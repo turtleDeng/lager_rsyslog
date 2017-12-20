@@ -4,14 +4,8 @@
 -define(SYSLOG_VERSION, 1).
 
 -define(DEFAULT_FORMATTER, {lager_default_formatter, [
-    "[", severity, "] ",
+    severity, " ",
     {pid, ""},
-    {module, [
-        {pid, ["@"], ""},
-        module,
-        {function, [":", function], ""},
-        {line, [":", line], ""}
-    ], ""},
-    " ",
+    " emqx ",
     message
 ]}).

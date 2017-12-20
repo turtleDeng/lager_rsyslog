@@ -109,11 +109,9 @@ code_change(_OldVsn, St, _Extra) ->
 
 
 send_log(St, Level, Msg) ->
-    Pre = io_lib:format("<~B>~B ~s ~s ~s ", [
+    Pre = io_lib:format("<~B>~B ~s ", [
         St#st.facility bor Level,
         ?SYSLOG_VERSION,
-        lager_rsyslog_util:iso8601_timestamp(),
-        St#st.hostname,
-        St#st.ident
+        lager_rsyslog_util:iso8601_timestamp()
     ]),
     gen_udp:send(St#st.socket, St#st.dest_addr, St#st.dest_port, [Pre, Msg]).

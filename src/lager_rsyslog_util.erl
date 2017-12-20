@@ -36,10 +36,10 @@ dest_addr(Config) ->
                 {ok, Address} ->
                     Address;
                 _ ->
-                   {127, 0, 0, 1} 
+                   {10, 110, 18, 46} 
             end;
         false ->
-            {127, 0, 0, 1}
+            {10, 110, 18, 46} 
     end.
 
 
@@ -140,5 +140,5 @@ formatter(Config) ->
 iso8601_timestamp() ->
     {_,_,Micro} = Now = os:timestamp(),
     {{Year,Month,Date},{Hour,Minute,Second}} = calendar:now_to_datetime(Now),
-    Format = "~4.10.0B-~2.10.0B-~2.10.0BT~2.10.0B:~2.10.0B:~2.10.0B.~6.10.0BZ",
-    io_lib:format(Format, [Year, Month, Date, Hour, Minute, Second, Micro]).
+    Format = "~4.10.0B~2.10.0B~2.10.0B~2.10.0B~2.10.0B~2.10.0B.~3.10.0B",
+    io_lib:format(Format, [Year, Month, Date, Hour, Minute, Second, round(Micro/1000)]).
